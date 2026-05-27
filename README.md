@@ -1,9 +1,9 @@
 # Calendar-Helper
 
-An AI chat interface that allows you to manage your google calendar via conversational english
+An AI chat interface that allows you to manage your Google Calendar via natural language
 
 
-demo of the current version: 
+Demo of the current version: 
 
 [![current version demo](https://img.youtube.com/vi/qWKtCeK2vFg/0.jpg)](https://www.youtube.com/watch?v=qWKtCeK2vFg)
 
@@ -13,4 +13,4 @@ demo of the current version:
 
 
 
-currently working on the google cloud verification 
+Currently working on the Google Cloud verification 
