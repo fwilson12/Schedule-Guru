@@ -13,4 +13,4 @@ demo of the current version:
 
 
 
-currently working on getting the google cloud verification set up so I can actually deploy it
+currently working on the google cloud verification 
