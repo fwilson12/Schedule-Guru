@@ -1,4 +1,4 @@
-# Calendar-Helper
+# Schedule-Guru
 
 An AI chat interface that allows you to manage your Google Calendar via natural language
 
