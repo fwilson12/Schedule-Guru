@@ -13,6 +13,7 @@ oldtoken.json
 token.json
 credentials.json
 *.txt
+!requirements.txt
 
 # Distribution / packaging
 .Python
