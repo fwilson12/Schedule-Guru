@@ -1,11 +1,11 @@
-# Schedule Guru — backend dependencies
-# Install with:  pip install -r requirements.txt
+# backend dependencies
+# install with:  pip install -r requirements.txt
 
 # Web server
 flask==3.1.2
 flask-cors==6.0.1
 
-# LLM agent
+# cloud LLM
 openai==2.9.0
 
 # Environment / config
