@@ -39,7 +39,7 @@ Once both servers are running (see [Getting started](#-getting-started)), open t
 | "Cancel my Tai-Chi sessions. They're getting too intense for me."                            | Finds and deletes the recurring event, offers emotional support                             |
 | "I need to block out 7-8 hours to study for finals next week, what times work best?"         | Reads your schedule, suggests strategies to split up the studying when you're free each day |
 
-Schedule Guru is always knows what time it is, and always confirms a requested time doesn't conflict with existing events, proposing alternatives when it does.
+Schedule Guru is always grounded with the current date/time, and always confirms a requested event time doesn't conflict with existing events, proposing alternatives when it does.
 
 ## Architecture
 
