@@ -23,7 +23,7 @@ load_dotenv(env_path)
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key= OPENAI_API_KEY)
 
-
+# tweaked chat version that takes user input as arg for post requests
 def chat(user_input):    
     # Add user message to history
     msg_history.append({"role": "user", "content": user_input})

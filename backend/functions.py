@@ -16,7 +16,7 @@ import os
 
 from vars import msg_history
 
-# for service requests
+# for requests
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
 # for openai api key
@@ -34,7 +34,7 @@ def get_service():
   if os.path.exists("../token.json"):
     creds = Credentials.from_authorized_user_file("../token.json", SCOPES)
   
-  # If there are no (valid) credentials available, let the user log in.
+  # If there are no (valid) credentials available, make the user log in
   if not creds or not creds.valid:
     if creds and creds.expired and creds.refresh_token:
       creds.refresh(Request())
@@ -130,7 +130,7 @@ def create_recurring(
     # Build EXDATE list (if any)
     exdate_block = None
     if exception_dates:
-        # Google requires: "EXDATE:20250110T090000Z,20250115T090000Z"
+        # Google wants: "EXDATE:20250110T090000Z,20250115T090000Z"
         exdate_block = ",".join(exception_dates)
 
     # Build Event Body
@@ -232,15 +232,15 @@ def delete_event(title, starttime, endtime):
       msg_history.append({"role": "tool", "content": "No events found."})
       return
       
-    # CRAZY HAck: Build a title --> id list of tuples for GPT to read; it picks the id of the event that matches the title argument
+    # CRAZY HACk: Build a title --> id list of tuples for chat to read; it picks the id of the event that matches the title argument
     name_id_list = []
     for event in events:
       name_id_list.append((event["summary"], event["id"]))
 
     # Convert the list of tuples to a string format that OpenAI can understand
-    event_list_str = "\n".join([f"{name} -------> (id: {id})" for name, id in name_id_list])
+    event_list_str = "\n".join([f"{name}: (id: {id})" for name, id in name_id_list])
     completion = client.chat.completions.create(
-      model="gpt-5-mini",
+      model="gpt-5.1",
       store=True,
       messages=[
           {"role": "system", "content": """Given a list of event names and their corresponding IDs, find the ID of the event that matches 
@@ -283,14 +283,14 @@ def delete_recurring(title, starttime, endtime):
         timeMin=starttime,
         timeMax=endtime,
         maxResults=999,
-        singleEvents=False, # <--- key, get series masters
+        singleEvents=False, # <--- key: get series masters (stems for recurring evs)
         )
         .execute()
       )
 
     events = events_result.get("items", [])
 
-    # Filter to only recurring *series masters*
+    # Filter to only recurring series masters
     recurring_masters = [event for event in events if event.get("recurrence") and not event.get("recurringEventId")]
 
     if not recurring_masters:
@@ -298,7 +298,7 @@ def delete_recurring(title, starttime, endtime):
       return
 
 
-    # Build summary → id list for GPT selection, same crazy Hack as delete_event
+    # Build summary -> id list for GPT selection, same crazy Hack as delete_event
     name_id_list = []
     for event in recurring_masters:
       summary = event["summary"]
@@ -306,12 +306,12 @@ def delete_recurring(title, starttime, endtime):
       name_id_list.append((summary, event_id))
 
     event_list_str = "\n".join([
-      f"{name} -------> (id: {id})"
+      f"{name}: (id: {id})"
       for name, id in name_id_list
     ])
 
     completion = client.chat.completions.create(
-      model="gpt-5-mini",
+      model="gpt-5.1",
       store=True,
       messages=[
         {"role": "system", "content": """Given a list of recurring event series names and their IDs, return ONLY the ID of the series 
@@ -322,7 +322,7 @@ def delete_recurring(title, starttime, endtime):
 
     chosen_id = completion.choices[0].message.content
 
-    # delete request with gpt's chosen id
+    # delete request with chat's chosen id
     try:
       service.events().delete(
       calendarId="primary",
@@ -364,9 +364,9 @@ def patch_event(title, starttime, endtime, patch_body, modify_series):
       name_id_list.append((event["summary"], event["id"]))
 
     # Convert the list of tuples to a string format that OpenAI can understand
-    event_list_str = "\n".join([f"{name} -------> (id: {id})" for name, id in name_id_list])
+    event_list_str = "\n".join([f"{name}: (id: {id})" for name, id in name_id_list])
     completion = client.chat.completions.create(
-      model="gpt-5-mini",
+      model="gpt-5.1",
       store=True,
       messages=[
           {"role": "system", "content": """Given a list of event names and their corresponding IDs, find the ID of the event that matches 
@@ -394,7 +394,7 @@ def patch_event(title, starttime, endtime, patch_body, modify_series):
       master = service.events().get(calendarId="primary", eventId=patch_id).execute()
 
       # normalize start/end if user provided them | keep date of the master event, use time from the instance event the agent returned
-      # (since the agent will want to change the series with the date of the instance it pulled, which messes shit up)
+      # (since the agent will want to change the series with the date of the instance it pulled, which messes stuff up)
       if "start" in patch_body:
         patch_body["start"] = {
           "dateTime": master["start"]["dateTime"][:10] + "T" +
