@@ -1,0 +1,19 @@
+# Schedule Guru — backend dependencies
+# Install with:  pip install -r requirements.txt
+
+# Web server
+flask==3.1.2
+flask-cors==6.0.1
+
+# LLM agent
+openai==2.9.0
+
+# Environment / config
+python-dotenv==1.2.1
+python-dateutil==2.9.0.post0
+
+# Google Calendar API + OAuth 2.0
+google-api-python-client==2.187.0
+google-auth==2.41.1
+google-auth-oauthlib==1.2.3
+google-auth-httplib2==0.2.1
