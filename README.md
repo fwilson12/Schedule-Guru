@@ -35,7 +35,7 @@ Once both servers are running (see [Getting started](#-getting-started)), open t
 | "Schedule a meeting with the jedi council next Tuesday at 2pm"                               | Creates a one-time event                                                                    |
 | "What's on my calendar this week?"                                                           | Reads and summarizes upcoming events                                                        |
 | "Move my meeting to Thursday morning"                                                        | Finds the event, then updates its time                                                      |
-| "Put my linear algebra lecture on my calendar: M/W from 9 to 10:30 am through December 10th" | Creates a recurring event with an `RRULE`                                                   |
+| "Put my linear algebra lecture on my calendar: M/W from 9 to 10:30 am through December 10th" | Creates a recurring event with a crafted `RRULE`                                            |
 | "Cancel my Tai-Chi sessions. They're getting too intense for me."                            | Finds and deletes the recurring event, offers emotional support                             |
 | "I need to block out 7-8 hours to study for finals next week, what times work best?"         | Reads your schedule, suggests strategies to split up the studying when you're free each day |
 
@@ -45,6 +45,8 @@ Schedule Guru is always grounded with the current date/time, and always confirms
 
 <p align="center">
   <img src="assets/schedule-guru-architecture1.png" alt="Schedule Guru system architecture" width="900">
+  <br>
+  <em>made with draw.io</em>
 </p>
 
 A React frontend talks to a Flask backend that runs an OpenAI `gpt-5.1` agent loop. The model acts as a planner: it either replies directly if it has the information to resolve the user's request, or dynamically selects one of six calendar tools. Tool results are fed through a second `gpt-5.1` summarizer pass that turns raw API output into plain English (and can chain further tool calls). For the `delete` and `patch` flows, a small `gpt-5.1` helper performs fuzzy title → `eventId` matching, resolving a spoken event name against the actual events on your calendar. All calendar operations go through the Google Calendar API v3, authorized via OAuth 2.0.
