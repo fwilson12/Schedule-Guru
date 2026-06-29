@@ -14,7 +14,7 @@ Ask it to schedule a meeting, move an appointment, set up a recurring event, or 
 
 ## Demo
 
-[![current version demo](https://img.youtube.com/vi/qWKtCeK2vFg/0.jpg)](https://www.youtube.com/watch?v=qWKtCeK2vFg)
+[![current demo]([https://img.youtube.com/vi/qWKtCeK2vFg/0.jpg)](https://www.youtube.com/watch?v=qWKtCeK2vFg](https://youtu.be/LmGNkqRFaSo))
 
 ## Features
 
