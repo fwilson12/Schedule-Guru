@@ -13,8 +13,7 @@ An AI chat interface that lets you manage your Google Calendar in plain English.
 Ask it to schedule a meeting, move an appointment, set up a recurring event, or clear your afternoon. Schedule Guru transforms your requests into Google Calendar API calls and reports back conversationally.
 
 ## Demo
-
-[![current demo]([https://img.youtube.com/vi/qWKtCeK2vFg/0.jpg)](https://www.youtube.com/watch?v=qWKtCeK2vFg](https://youtu.be/LmGNkqRFaSo))
+[![current version demo](https://img.youtube.com/vi/LmGNkqRFaSo/hqdefault.jpg)](https://youtu.be/LmGNkqRFaSo)
 
 ## Features
 
