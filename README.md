@@ -29,7 +29,7 @@ Ask it to schedule a meeting, move an appointment, set up a recurring event, or 
 
 Once both servers are running (see [Getting started](#-getting-started)), open the frontend and just talk to it. Some examples:
 
-| You say                                                                                      | What it does                                                                                |
+| You                                                                                          | Schedule Guru:                                                                              |
 | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | "Schedule a meeting with the jedi council next Tuesday at 2pm"                               | Creates a one-time event                                                                    |
 | "What's on my calendar this week?"                                                           | Reads and summarizes upcoming events                                                        |
@@ -52,11 +52,11 @@ A React frontend talks to a Flask backend that runs an OpenAI `gpt-5.1` agent lo
 
 ## Tech stack
 
-| Layer    | Stack                                               |
+|        |                                                     |
 | -------- | --------------------------------------------------- |
 | Frontend | React 19, Vite                                      |
-| Backend  | Python, Flask, Flask-CORS                           |
-| LLM      | OpenAI `gpt-5.1` (function calling)                 |
+| Backend  | Python, Flask-CORS                                  |
+| LLM      | OpenAI API, currently configured with `gpt-5.1`     |
 | Calendar | Google Calendar API v3 (`google-api-python-client`) |
 | Auth     | OAuth 2.0 (`google-auth-oauthlib`)                  |
 
@@ -100,7 +100,7 @@ Create `backend/.env` with your OpenAI key:
 OPENAI_API_KEY=your_key_here
 ```
 
-Download your OAuth client file from the Google Cloud Console, rename it to `credentials.json`, and place it in the project root. On first run you'll be prompted to authorize calendar access in the browser, and a `token.json` will be created automatically.
+Download your OAuth client file from the Google Cloud Console, rename it to `credentials.json`, and place it in the project root. On the first run you'll be prompted to authorize calendar access in the browser, and a `token.json` will be created automatically.
 
 Run the server:
 
@@ -116,7 +116,3 @@ cd frontend
 npm install
 npm run dev          # http://localhost:5173
 ```
-
-## License
-
-Released under the [MIT License](LICENSE). © 2026 Fletcher Wilson.
