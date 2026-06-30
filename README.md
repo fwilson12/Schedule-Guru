@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
-![OpenAI](https://img.shields.io/badge/OpenAI-gpt--5.1-412991?logo=openai&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-API-412991?logo=openai&logoColor=white)
 ![Google Calendar](https://img.shields.io/badge/Google%20Calendar-API%20v3-4285F4?logo=googlecalendar&logoColor=white)
 ![Status](https://img.shields.io/badge/status-in%20development-orange)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
