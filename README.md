@@ -101,12 +101,13 @@ OPENAI_API_KEY=your_key_here
 ```
 
 Download your OAuth client file from the Google Cloud Console, rename it to `credentials.json`, and place it in the project root. On the first run you'll be prompted to authorize calendar access in the browser, and a `token.json` will be created automatically.
+This process sucks and I hate it.
 
 Run the server:
 
 ```bash
 cd backend
-python app.py        # http://localhost:5000  (POST /chat)
+python app.py        # http://localhost:5000  
 ```
 
 ### Frontend
